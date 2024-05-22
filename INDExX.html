@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de adivinar el número</title>
+</head>
+<body>
+    <h1>Juego de adivinar el número</h1>
+    <p>Presiona el botón para comenzar a jugar:</p>
+    <button onclick="startGame()">Comenzar juego</button>
+    
+    <div id="game" style="display: none;">
+        <h2>Juego de adivinar el número</h2>
+        <p>Intenta adivinar el número secreto (entre 1 y 100)</p>
+        <input type="text" id="userInput" placeholder="Ingresa tu intento">
+        <button onclick="checkGuess()">Adivinar</button>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        var numberToGuess;
+        var attempts = 0;
+
+        function startGame() {
+            // Generar número aleatorio entre 1 y 100
+            numberToGuess = Math.floor(Math.random() * 100) + 1;
+            // Mostrar la sección del juego
+            document.getElementById("game").style.display = "block";
+        }
+
+        function checkGuess() {
+            var userInput = document.getElementById("userInput").value;
+            var guessedNumber = parseInt(userInput);
+
+            if (isNaN(guessedNumber)) {
+                document.getElementById("result").textContent = "Por favor ingresa un número válido.";
+                return;
+            }
+
+            attempts++;
+
+            if (guessedNumber === numberToGuess) {
+                document.getElementById("result").textContent = "¡Felicidades! Has adivinado el número en " + attempts + " intentos.";
+            } else if (guessedNumber < numberToGuess) {
+                document.getElementById("result").textContent = "El número secreto es mayor.";
+            } else {
+                document.getElementById("result").textContent = "El número secreto es menor.";
+            }
+        }
+    </script>
+</body>
+</ht
+ml>
